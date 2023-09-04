@@ -19,7 +19,7 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [loginVisible, setLoginVisible] = useState(false)
 
-  const noteFromRef = useRef()
+  const noteFormRef = useRef()
 
   useEffect(() => {
     noteService
@@ -44,7 +44,7 @@ const App = () => {
     //   content: newNote,
     //   important: Math.random() > 0.5,
     // }
-    noteFromRef.current.toggleVisibility();
+    noteFormRef.current.toggleVisibility();
     noteService
       .create(noteObject)
         .then(returnedNote => {
@@ -99,9 +99,10 @@ const App = () => {
     )
   }
 
+
   const noteForm = () => {
     return (
-      <Togglable buttonLabel="new note" ref={noteFromRef}>
+      <Togglable buttonLabel="new note" ref={noteFormRef}>
         <NoteForm createNote={addNote} />
       </Togglable>
     )
@@ -116,7 +117,7 @@ const App = () => {
     ? notes
     : notes.filter(note => note.important)
 
-   const toggleImportanceOf = id => {
+  const toggleImportanceOf = id => {
       const note = notes.find(n => n.id === id)
       const changedNote = { ...note, important: !note.important }
   
