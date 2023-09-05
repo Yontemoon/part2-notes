@@ -1,7 +1,7 @@
 import axios from 'axios'
-const baseUrl = '/api/notes';
+const baseUrl = '/api/notes'
 
-let token = null;
+let token = null
 
 const setToken = (newToken) => {
   token = `Bearer ${newToken}`

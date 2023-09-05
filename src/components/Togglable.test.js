@@ -5,33 +5,33 @@ import userEvent from '@testing-library/user-event'
 import Togglable from './Togglable'
 
 describe('<Toggleable />', () => {
-    let container
+  let container
 
-    beforeEach(()=> {
-        container = render(
-            <Togglable buttonLabel="show...">
-                <div className="testDiv">
+  beforeEach(() => {
+    container = render(
+      <Togglable buttonLabel="show...">
+        <div className="testDiv">
                     toggleable content
-                </div>
-            </Togglable>
-        ).container
-    })
+        </div>
+      </Togglable>
+    ).container
+  })
 
-    test("renders its children", async () => {
-        await screen.findAllByText('toggleable content')
-    })
+  test('renders its children', async () => {
+    await screen.findAllByText('toggleable content')
+  })
 
-    test('at start the children are not displayed', () => {
-        const div = container.querySelector('.toggleableContent')
-        expect(div).toHaveStyle('display: none')
-    })
+  test('at start the children are not displayed', () => {
+    const div = container.querySelector('.toggleableContent')
+    expect(div).toHaveStyle('display: none')
+  })
 
-    test('after clicking the button, children are displayed', async () => {
-        const user = userEvent.setup()
-        const button = screen.getByText('show...')
-        await user.click(button)
-    
-        const div = container.querySelector('.toggleableContent')
-        expect(div).not.toHaveStyle('display: none')
-      })
+  test('after clicking the button, children are displayed', async () => {
+    const user = userEvent.setup()
+    const button = screen.getByText('show...')
+    await user.click(button)
+
+    const div = container.querySelector('.toggleableContent')
+    expect(div).not.toHaveStyle('display: none')
+  })
 })
